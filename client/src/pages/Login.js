@@ -20,7 +20,7 @@ function Login(){
       setError(errorMessage);
     }
     }; 
-
+    handleSubmit(e);
 }
 
 export default function Login() {
@@ -31,7 +31,7 @@ export default function Login() {
         <Form.label className=''>Email</Form.label>
         <Form.input type='text' name ='email' value= {email} onChange={(e)=> setEmail(e.target.value)}></Form.input>
         <Form.Control type='email' placeholder='Enter your email address' />
-        <form.Text className="text-muted"> We'll never share your email with anyone else!</form.Text>
+        <Form.Text className="text-muted"> We'll never share your email with anyone else!</form.Text>
         </Form.Group>
         <Form.Group className='mb-3 controlID="formPassword'>
         <Form.Label>Password</Form.Label>
