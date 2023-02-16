@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 export default function signup() {
-    const [credentials, setUserCredentials] = useState({username: '', email: '', password: ''});
+    const [credentials, setUserCredentials] = useState({username: '',password: ''});
 
-    //const [newUser, {error}] = useMutation(CREATE_USER);
+    //const [loginUser, {error}] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
         event.preventDefault();
@@ -20,7 +20,7 @@ export default function signup() {
     console.log(email, password,username);
 };
 
-    const handleNewUserSubmit = async (event) =>{
+    const handleLoginSubmit = async (event) =>{
         event.preventDefault();
     try {
        const {data} = await newUser({variables:{...userFormatData}});
@@ -43,7 +43,7 @@ export default function signup() {
 
   return (
     <>
-        <Form onSubmit={handleNewUserSubmit}>
+        <Form onSubmit={handleLoginSubmit}>
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control 

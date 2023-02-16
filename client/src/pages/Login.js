@@ -1,68 +1,69 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export default function signup() {
+    const [credentials, loginuser] = useState({username: '', password: ''});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let errorMessage = '';
-    if (!email) {
-      errorMessage = errorMessage + ' A valid email is required.';
+    //const [LoginUser, {error}] = useMutation(LOGIN_USER);
+
+    const handleInputChange = (event) => {
+        event.preventDefault();
+        console.log(event.target)
+        const { name, value } = event.target;
+        loginuser({ ...credentials, [name]: value });
+
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    console.log(username, password);
+};
+
+    const handleLogin = async (event) =>{
+        event.preventDefault();
+    try {
+       const {data} = await newUser({variables:{...userFormatData}});
+       
+       Auth.login(data.newuser.token)
     }
-    if (!password) {
-      errorMessage = errorMessage + ' A password is required.';
-    }
-    if (errorMessage) {
-      setError(errorMessage);
-    }
+    catch(err){
+        console.log(err);
+    };
 
-    setEmail(email);
-    setPassword(password);
-  };
-
-  const handleChange= (e) => {
-    // const [email, value}
-    setEmail(e.target.value);
-    setPassword(e.target.value);
-  };
-
+    loginuser({
+        username:'',
+        password: '',
+    })
+    };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+    <>
+        <Form onSubmit={handleLogin}>
+        <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control 
+            type="username" 
+            name="username"
+            value= {credentials.username}
+            placeholder="Please enter a username." 
+            onChange={handleInputChange}
+            />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+            <Form.Label>Password</Form.Label>
+            <Form.Control 
+            type="password" 
+            name="password"
+            value= {credentials.password}
+            placeholder="Password"  
+            onChange={handleInputChange}/>
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+            Submit
         </Button>
-      </Form>
-    </div>
-  );
+    </Form>     
+    </>
+  )
 }
