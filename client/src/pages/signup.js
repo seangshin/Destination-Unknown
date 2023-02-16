@@ -2,34 +2,34 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 export default function signup() {
-    const [credentials, setUserCredentials] = useState({username: '',password: ''});
+    const [credentials, setUserCredentials] = useState({email: '', username: '', password: ''});
 
     //const [loginUser, {error}] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
-        event.preventDefault();
-        console.log(event.target)
         const { name, value } = event.target;
         setUserCredentials({ ...credentials, [name]: value });
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    };
-    console.log(email, password,username);
 };
 
     const handleLoginSubmit = async (event) =>{
         event.preventDefault();
-    try {
-       const {data} = await newUser({variables:{...userFormatData}});
-       
-       Auth.newuser(data.newuser.token)
-    }
-    catch(err){
-        console.log(err);
+
+        const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     };
+
+    console.log(credentials.email, credentials.password, credentials.username);
+
+    // try {
+    //    const {data} = await newUser({variables:{...userFormatData}});
+       
+    //    Auth.newuser(data.newuser.token)
+    // }
+    // catch(err){
+    //     console.log(err);
+    // };
 
     setUserCredentials({
         username:'',
@@ -37,9 +37,6 @@ export default function signup() {
         password: '',
     })
     };
-
-   
-
 
   return (
     <>
@@ -60,7 +57,7 @@ export default function signup() {
             type="email" 
             name="email"
             value= {credentials.email}
-            placeholder="Please a valid email."
+            placeholder="Please enter a valid email."
             onChange={handleInputChange} />
             <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -77,7 +74,7 @@ export default function signup() {
             onChange={handleInputChange}/>
         </Form.Group>
         <Button variant="primary" type="submit">
-            Submit
+            Sign Up
         </Button>
     </Form>     
     </>
