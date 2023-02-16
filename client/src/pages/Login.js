@@ -1,51 +1,68 @@
-import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
-import 'bootstrap/dist/js/bootstrap.js';
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Login(){
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- 
+  const [error, setError] = useState('');
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let errorMessage = '';
-    if (!email){
+    if (!email) {
       errorMessage = errorMessage + ' A valid email is required.';
     }
-    if (!password){
-      errorPassword = errorMessage + ' A password is required.';
+    if (!password) {
+      errorMessage = errorMessage + ' A password is required.';
     }
-    if (errorMessage){
+    if (errorMessage) {
       setError(errorMessage);
     }
-    }; 
-    handleSubmit(e);
-}
 
-export default function Login() {
+    setEmail(email);
+    setPassword(password);
+  };
+
+  const handleChange= (e) => {
+    // const [email, value}
+    setEmail(e.target.value);
+    setPassword(e.target.value);
+  };
+
+
   return (
-    <div className='color-overlay d-flex justify-content-center align-items-center'>
-     <Form className='rounded p-4 p-sm-3' onSubmit={handleSubmit}>
-        <Form.Group className='mb-3 controlID="formEmail'>
-        <Form.label className=''>Email</Form.label>
-        <Form.input type='text' name ='email' value= {email} onChange={(e)=> setEmail(e.target.value)}></Form.input>
-        <Form.Control type='email' placeholder='Enter your email address' />
-        <Form.Text className="text-muted"> We'll never share your email with anyone else!</form.Text>
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
         </Form.Group>
-        <Form.Group className='mb-3 controlID="formPassword'>
-        <Form.Label>Password</Form.Label>
-        <Form.Control type='password' placeholder='Enter your password' />
-        <Form.input type='text' name ='password' value= {password} onBlur={handleBlur} onChange={(e)=> setPassword(e.target.value)}></Form.input>
-        </Form.Group>
-        <Form.Group className='mb-3 controlID="formcheckmark'>s
-          <Form.Check type='checkbox' label='Remember Me' />
-        </Form.Group>
-        <Button vaariant='login-button' type='submit'>
-            Log-in
-        </Button>
-    </Form>
-    </div>
-  )
-}
 
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+}
