@@ -6,7 +6,7 @@ function App() {
     <div>
       {/* <Signup /> */}
       <Login />
-
+    </div>
   );
 }
 
