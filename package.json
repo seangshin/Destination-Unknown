@@ -17,10 +17,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "css-loader": "^6.7.3",
+    "style-loader": "^3.3.1"
   },
   "bugs": {
     "url": "https://github.com/seangshin/Destination-Unknown/issues"
-  },
-  "homepage": "https://github.com/seangshin/Destination-Unknown#readme"
+  }
 }
