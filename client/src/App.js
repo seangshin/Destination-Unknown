@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Form from './components/Form';
+import searchLocation from './pages/searchLocation';
 
 // // Construct our main GraphQL API endpoint
 // const httpLink = createHttpLink({
@@ -31,7 +32,8 @@ import Form from './components/Form';
 function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Form />
+      
+      <searchLocation />
     </div>
     // <ApolloProvider client={client}>
     //   <Router>
