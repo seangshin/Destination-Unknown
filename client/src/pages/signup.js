@@ -2,45 +2,49 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 export default function signup() {
-    const [credentials, loginuser] = useState({username: '', password: ''});
+    const [credentials, setUserCredentials] = useState({username: '',password: ''});
 
-    //const [LoginUser, {error}] = useMutation(LOGIN_USER);
+    //const [loginUser, {error}] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
         event.preventDefault();
         console.log(event.target)
         const { name, value } = event.target;
-        loginuser({ ...credentials, [name]: value });
+        setUserCredentials({ ...credentials, [name]: value });
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     };
-    console.log(username, password);
+    console.log(email, password,username);
 };
 
-    const handleLogin = async (event) =>{
+    const handleLoginSubmit = async (event) =>{
         event.preventDefault();
     try {
        const {data} = await newUser({variables:{...userFormatData}});
        
-       Auth.login(data.newuser.token)
+       Auth.newuser(data.newuser.token)
     }
     catch(err){
         console.log(err);
     };
 
-    loginuser({
+    setUserCredentials({
         username:'',
+        email: '',
         password: '',
     })
     };
 
+   
+
+
   return (
     <>
-        <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formBasicUsername">
+        <Form onSubmit={handleLoginSubmit}>
+        <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control 
             type="username" 
@@ -49,6 +53,18 @@ export default function signup() {
             placeholder="Please enter a username." 
             onChange={handleInputChange}
             />
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail" >
+            <Form.Label>Email address</Form.Label>
+            <Form.Control 
+            type="email" 
+            name="email"
+            value= {credentials.email}
+            placeholder="Please a valid email."
+            onChange={handleInputChange} />
+            <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+            </Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
