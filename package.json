@@ -23,11 +23,5 @@
   },
   "bugs": {
     "url": "https://github.com/seangshin/Destination-Unknown/issues"
-  },
-  "homepage": "https://github.com/seangshin/Destination-Unknown#readme",
-  "dependencies": {
-    "bootstrap": "^5.2.3",
-    "jquery": "^3.6.3",
-    "sass": "^1.58.0"
   }
 }
