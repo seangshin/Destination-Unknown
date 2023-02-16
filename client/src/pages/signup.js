@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+
 export default function signup() {
     const [credentials, setUserCredentials] = useState({email: '', username: '', password: ''});
-
-    //const [loginUser, {error}] = useMutation(CREATE_USER);
+    const [addUser, {error}] = useMutation(ADD_USER);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -22,14 +25,16 @@ export default function signup() {
 
     console.log(credentials.email, credentials.password, credentials.username);
 
-    // try {
-    //    const {data} = await newUser({variables:{...userFormatData}});
+    try {
+       const {data} = await addUser({
+            variables: { ...userFormatData }
+        });
        
-    //    Auth.newuser(data.newuser.token)
-    // }
-    // catch(err){
-    //     console.log(err);
-    // };
+       Auth.login(data.addUser.token)
+    }
+    catch(err){
+        console.log(err);
+    };
 
     setUserCredentials({
         username:'',
