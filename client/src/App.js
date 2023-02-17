@@ -9,7 +9,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import Signup from "./pages/Signup";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 // Construct our main GraphQL API endpoint
