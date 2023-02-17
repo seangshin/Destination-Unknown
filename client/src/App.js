@@ -32,8 +32,10 @@ const client = new ApolloClient({
 function App() {
   return (
     <div>
-      <Signup />
-      {/* <Login />  */}
+      <ApolloProvider client={client}>
+        <Signup />
+        {/* <Login />  */}
+      </ApolloProvider>
     </div>
   );
 }
