@@ -1,11 +1,6 @@
 import React from "react";
 import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  createHttpLink,
-} from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from "@apollo/client/link/context";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
