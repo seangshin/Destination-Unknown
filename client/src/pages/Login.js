@@ -1,52 +1,53 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-export default function signup() {
-    const [credentials, loginuser] = useState({username: '', password: ''});
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
-    //const [LoginUser, {error}] = useMutation(LOGIN_USER);
+export default function Login() {
+    const [credentials, setUserCredentials] = useState({email: '', password: ''});
+    const [login, {error}] = useMutation(LOGIN_USER);
 
     const handleInputChange = (event) => {
-        event.preventDefault();
-        console.log(event.target)
         const { name, value } = event.target;
-        loginuser({ ...credentials, [name]: value });
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+        setUserCredentials({ ...credentials, [name]: value });
     };
-    console.log(username, password);
-};
 
     const handleLogin = async (event) =>{
         event.preventDefault();
-    try {
-       const {data} = await newUser({variables:{...userFormatData}});
-       
-       Auth.login(data.newuser.token)
-    }
-    catch(err){
-        console.log(err);
-    };
 
-    loginuser({
-        username:'',
-        password: '',
-    })
+        // check if form has everything (as per react-bootstrap docs)
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        try {
+            const {data} = await login({variables:{...credentials}});
+            Auth.login(data.login.token)
+        }
+        catch(err){
+            console.log(err);
+        };
+
+        setUserCredentials({
+            email:'',
+            password: '',
+        })
     };
 
   return (
     <>
         <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
+        <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
             <Form.Control 
-            type="username" 
-            name="username"
-            value= {credentials.username}
-            placeholder="Please enter a username." 
+            type="text" 
+            name="email"
+            value= {credentials.email}
+            placeholder="Please enter an email." 
             onChange={handleInputChange}
             />
         </Form.Group>
@@ -61,9 +62,9 @@ export default function signup() {
             onChange={handleInputChange}/>
         </Form.Group>
         <Button variant="primary" type="submit">
-            Submit
+            Login
         </Button>
-    </Form>     
+    </Form>  
     </>
-  )
-}
+  );
+};
