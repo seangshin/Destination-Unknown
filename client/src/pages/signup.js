@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-export default function signup() {
+export default function Signup() {
     const [credentials, setUserCredentials] = useState({email: '', username: '', password: ''});
     const [addUser, {error}] = useMutation(ADD_USER);
 
@@ -27,7 +27,7 @@ export default function signup() {
 
     try {
        const {data} = await addUser({
-            variables: { ...userFormatData }
+            variables: { ...credentials }
         });
        
        Auth.login(data.addUser.token)
