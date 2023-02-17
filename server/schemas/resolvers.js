@@ -44,6 +44,7 @@ const resolvers = {
 
       // Sign a new token for the user
       const token = signToken(user);
+      console.log('nice');
       // Return the token and the user
       return { token, user };
     },

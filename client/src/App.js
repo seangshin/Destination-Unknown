@@ -33,8 +33,8 @@ function App() {
   return (
     <div>
       <ApolloProvider client={client}>
-        <Signup />
-        {/* <Login />  */}
+        {/* <Signup /> */}
+        <Login /> 
       </ApolloProvider>
     </div>
   );
