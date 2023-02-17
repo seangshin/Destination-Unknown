@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Signup from "./pages/Signup";
+import Signup from "./pages/signup";
 import Login from "./pages/Login";
 
 // Construct our main GraphQL API endpoint
