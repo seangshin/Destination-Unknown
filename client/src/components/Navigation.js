@@ -20,10 +20,10 @@ export default function Navigation() {
       </Navbar.Brand>
       <Nav className="buttons">
               <Nav.Link 
-              as={Link} to='/login'
+              as={Link} to='login'
               className="d-inline-block center">Log-in</Nav.Link>
             <Button>
-              <Nav.Link as={Link} to='/signup'>Sign Up!</Nav.Link>
+              <Nav.Link as={Link} to='signup'>Sign Up!</Nav.Link>
             </Button>
           </Nav>
       </Container>
