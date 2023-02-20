@@ -8,7 +8,7 @@ export default function Navigation() {
     <div className='navbar'>
     <Navbar bg="dark" variant="dark" fixed="top">
       <Container> 
-      <Navbar.Brand href="#home">
+      <Navbar.Brand  as={Link} to='/'>
         <img
           alt=""
           src="./logo.png"
@@ -20,10 +20,10 @@ export default function Navigation() {
       </Navbar.Brand>
       <Nav className="buttons">
               <Nav.Link 
-              as={Link} to='/login'
+              as={Link} to='login'
               className="d-inline-block center">Log-in</Nav.Link>
             <Button>
-              <Nav.Link as={Link} to='/signup'>Sign Up!</Nav.Link>
+              <Nav.Link as={Link} to='signup'>Sign Up!</Nav.Link>
             </Button>
           </Nav>
       </Container>

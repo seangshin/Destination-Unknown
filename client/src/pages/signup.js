@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import "../styles/signup.css";
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
@@ -45,7 +46,7 @@ export default function Signup() {
 
   return (
     <>
-        <Form onSubmit={handleLoginSubmit}>
+        <Form onSubmit={handleLoginSubmit} className="signupform">
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control 

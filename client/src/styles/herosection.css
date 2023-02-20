@@ -1,0 +1,34 @@
+/* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext'); */
+
+  .hero-img{
+    object-fit:cover; 
+    width:100%;
+    height:auto;
+    position: fixed; 
+    z-index: -1;
+}
+
+.hero-container{
+    background: url('../assets/hero-image.jpg') center center/cover no-repeat;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
+    object-fit: contain;
+}
+
+/* .main-htag{
+    font-family:'Gajraj One'
+} */
+
+.hero--button{
+color: #fc8eac; 
+}
+    
+.hero--button:hover {
+ background-color: transparent;
+}
