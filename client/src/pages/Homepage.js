@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
-import { SAVE_LOCATION } from '../utils/mutations';
 
 import Auth from '../utils/auth';
-import { searchGooglePlaces } from '../utils/API';
 import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -14,6 +12,7 @@ const SearchPlaces = () => {
   const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+  const [currentCity, setCurrentCity] =useState([]);
   
 
   const [getCity, { error }] = useMutation(GET_CITY);
@@ -32,7 +31,19 @@ const SearchPlaces = () => {
         variables: { cityName: searchInput},
       });
 
+      // const cityData = response.data.getCity.payload.map((city) => ({
+      //   cityId: city.place_id,
+      //   cityName: city.formatted_address,
+      //   lat: city.geomentry.location.lat,
+      //   lng: city.geomentry.location.lng,
+      //   photo: city.photos.photo_reference || '',
+      // }));
+
+      //setCurrentCity(cityData);
+      //console.log(JSON.stringify(cityData));
+      //console.log(response.data.getCity.payload);
       console.log(response);
+      //console.log(cityData);
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
