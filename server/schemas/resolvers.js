@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const axios = require('axios');
 
 const resolvers = {
   Query: {
@@ -46,6 +47,14 @@ const resolvers = {
       const token = signToken(user);
       // Return the token and the user
       return { token, user };
+    },
+
+    getCity: async (parent, { cityName }) => {
+      const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      const response = await axios(url);
+      const payload = JSON.stringify(response.data.results);
+      console.log(response.data.results);
+      return { payload };
     },
   },
 };

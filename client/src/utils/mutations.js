@@ -24,6 +24,14 @@ export const ADD_USER = gql`
   }
 `;
 
+export const GET_CITY = gql`
+  mutation getCity($cityName: String!) {
+    getCity(cityName: $cityName) {
+      payload
+    }
+  }
+`;
+
 // export const SAVE_BOOK = gql`
 //   mutation saveBook($bookId: String!, $authors: [String], $description: String!, $title: String!, $image: String, $link: String) {
 //     saveBook(bookId: $bookId, authors: $authors, description: $description, title: $title, image: $image, link: $link) {
