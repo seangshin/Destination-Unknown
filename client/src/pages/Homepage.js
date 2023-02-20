@@ -31,19 +31,8 @@ const SearchPlaces = () => {
         variables: { cityName: searchInput},
       });
 
-      // const cityData = response.data.getCity.payload.map((city) => ({
-      //   cityId: city.place_id,
-      //   cityName: city.formatted_address,
-      //   lat: city.geomentry.location.lat,
-      //   lng: city.geomentry.location.lng,
-      //   photo: city.photos.photo_reference || '',
-      // }));
-
-      //setCurrentCity(cityData);
-      //console.log(JSON.stringify(cityData));
-      //console.log(response.data.getCity.payload);
       console.log(response);
-      //console.log(cityData);
+
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
@@ -54,8 +43,7 @@ const SearchPlaces = () => {
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Places!</h1>
-          <Form>
-          {/* <Form onSubmit={handleFormSubmit}> */}
+          <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
