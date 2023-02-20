@@ -41,7 +41,7 @@ export default function Login() {
 
   return (
     <>
-        <Form onSubmit={handleLogin}>
+        <Form onSubmit={handleLogin} className="loginform">
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control 
