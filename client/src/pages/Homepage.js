@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
-import { SAVE_LOCATION } from '../utils/mutations';
 
 import Auth from '../utils/auth';
-import { searchGooglePlaces } from '../utils/API';
 import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -14,6 +12,7 @@ const SearchPlaces = () => {
   const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+  const [currentCity, setCurrentCity] =useState([]);
   
 
   const [getCity, { error }] = useMutation(GET_CITY);
@@ -33,6 +32,7 @@ const SearchPlaces = () => {
       });
 
       console.log(response);
+
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
@@ -43,8 +43,7 @@ const SearchPlaces = () => {
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Places!</h1>
-          <Form>
-          {/* <Form onSubmit={handleFormSubmit}> */}
+          <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control

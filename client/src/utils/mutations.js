@@ -27,7 +27,11 @@ export const ADD_USER = gql`
 export const GET_CITY = gql`
   mutation getCity($cityName: String!) {
     getCity(cityName: $cityName) {
-      payload
+      cityId
+      cityName
+      lat
+      lng
+      photo
     }
   }
 `;

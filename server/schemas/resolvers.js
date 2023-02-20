@@ -52,9 +52,19 @@ const resolvers = {
     getCity: async (parent, { cityName }) => {
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
       const response = await axios(url);
-      const payload = JSON.stringify(response.data.results);
-      console.log(response.data.results);
-      return { payload };
+      const results = JSON.stringify(response.data.results[0]);
+      
+      const payload = {
+        cityId: response.data.results[0].place_id,
+        cityName: response.data.results[0].formatted_address,
+        lat: response.data.results[0].geometry.location.lat,
+        lng: response.data.results[0].geometry.location.lng,
+        photo: response.data.results[0].photos[0].photo_reference || '',
+      };
+
+      console.log(payload);
+      // console.log(cityData);
+      return payload;
     },
   },
 };

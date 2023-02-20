@@ -26,7 +26,11 @@ const typeDefs = gql`
   }
 
   type City {
-    payload: String
+    cityId: String
+    cityName: String
+    lat: String
+    lng: String
+    photo: String
   }
 
   type Mutation {
