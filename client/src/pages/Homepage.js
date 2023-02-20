@@ -6,6 +6,7 @@ import { SAVE_LOCATION } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 import { searchGooglePlaces } from '../utils/API';
+import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchPlaces = () => {
@@ -13,40 +14,29 @@ const SearchPlaces = () => {
   const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+  
 
-  //const [saveLocation, { error }] = useMutation(SAVE_LOCATION);
+  const [getCity, { error }] = useMutation(GET_CITY);
 
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  //   if (!searchInput) {
-  //     return false;
-  //   }
+    if (!searchInput) {
+      return false;
+    }
 
-  //   try {
-  //     const response = await searchGooglePlaces(searchInput);
+    console.log(searchInput);
 
-  //     if (!response.ok) {
-  //       throw new Error('something went wrong');
-  //     }
+    try {
+      const response = await getCity({
+        variables: { cityName: searchInput},
+      });
 
-  //     const { results } = await response.json();
-
-      // const placeData = items.map((place) => ({
-      //   locationId: location.place_id,
-      //   lat: geometry.location.lat,
-      //   lng: geometry.location.lng,
-      //   placeName: name,
-      //   photo: photos.photo_reference,
-      // }));
-
-  //     console.log(results);
-  //     //setSearchedPlaces(placeData);
-  //     setSearchInput('');
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+      console.log(response);
+    } catch (err) {
+      console.log(JSON.stringify(err, null, 2));
+    }
+  };
 
   return (
     <>
