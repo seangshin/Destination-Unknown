@@ -5,8 +5,8 @@ import { setContext } from "@apollo/client/link/context";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
-// import Homepage from "./pages/home";
-import Homehero from "./components/Herosection"
+import Homepage from "./pages/home";
+// import Homehero from "./components/Herosection"
 import Searchcards from "./components/Searchcards";
 
 // Construct our main GraphQL API endpoint
@@ -39,9 +39,8 @@ function App() {
       <Router>
       <>
         <Navigation />
-        <Homehero/>
         <Routes>
-          {/* <Route path='/' element={<Homepage />} /> */}
+          <Route path='/' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
         </Routes>

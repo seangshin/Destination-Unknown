@@ -46,7 +46,7 @@ export default function Signup() {
 
   return (
     <>
-        <Form onSubmit={handleLoginSubmit}>
+        <Form onSubmit={handleLoginSubmit} className="signupform">
         <Form.Group controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
             <Form.Control 

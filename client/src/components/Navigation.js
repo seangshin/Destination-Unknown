@@ -8,7 +8,7 @@ export default function Navigation() {
     <div className='navbar'>
     <Navbar bg="dark" variant="dark" fixed="top">
       <Container> 
-      <Navbar.Brand href="#home">
+      <Navbar.Brand  as={Link} to='/'>
         <img
           alt=""
           src="./logo.png"
