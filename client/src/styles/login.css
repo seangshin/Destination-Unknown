@@ -1,0 +1,23 @@
+.loginform{
+    margin-top: 100px;
+    padding: 20px;
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loginbutton{
+    background-color:#fc8eac;
+    color:black;
+    outline: #fc8eac;
+    box-shadow: 2px 2px 5px black;
+    border: none;
+}
+
+.loginbutton:hover {
+    background-color:#010000;
+    color:#fc8eac;
+    
+}

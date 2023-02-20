@@ -16,21 +16,21 @@ const SearchPlaces = () => {
 
   //const [saveLocation, { error }] = useMutation(SAVE_LOCATION);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-    if (!searchInput) {
-      return false;
-    }
+  //   if (!searchInput) {
+  //     return false;
+  //   }
 
-    try {
-      const response = await searchGooglePlaces(searchInput);
+  //   try {
+  //     const response = await searchGooglePlaces(searchInput);
 
-      if (!response.ok) {
-        throw new Error('something went wrong');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong');
+  //     }
 
-      const { results } = await response.json();
+  //     const { results } = await response.json();
 
       // const placeData = items.map((place) => ({
       //   locationId: location.place_id,
@@ -40,20 +40,21 @@ const SearchPlaces = () => {
       //   photo: photos.photo_reference,
       // }));
 
-      console.log(results);
-      //setSearchedPlaces(placeData);
-      setSearchInput('');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     console.log(results);
+  //     //setSearchedPlaces(placeData);
+  //     setSearchInput('');
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Places!</h1>
-          <Form onSubmit={handleFormSubmit}>
+          <Form>
+          {/* <Form onSubmit={handleFormSubmit}> */}
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
