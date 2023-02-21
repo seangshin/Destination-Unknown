@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import { Button, Card, Dropdown } from 'react-bootstrap';
+import "../styles/searchcards.css"
 
 export default function Searchcards() {
     const [category, setCategory] = useState('restaurants');
@@ -89,38 +90,52 @@ export default function Searchcards() {
 
   return (
     <>
-        <div class="text-center">
+        {/* <div class="text-center">
         <h2>Atlanta</h2>
-        </div>
+        </div> */}
 
         {/* onClick={(key)=>handleSelect(key)} */}
-        <Dropdown onSelect={handleSelect}>
+        <Dropdown onSelect={handleSelect} className="dropdown">
       <Dropdown.Toggle 
-      variant="success" 
-      id="dropdown-basic">
+    //   variant="success" 
+      id="dropdown-basic"
+      size="lg"
+      className="togglebtn">
         Select Activity
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu className="dropmenu">
         <Dropdown.Item 
         eventKey="restaurants"
-         >Restaurants</Dropdown.Item>
+         >Restaurants
+         </Dropdown.Item>
         <Dropdown.Item eventKey="bars">Bars</Dropdown.Item>
         <Dropdown.Item eventKey="activities">Activities</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
 
         {filtereddata.map((card)=>{
-            return <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={card.img} />
+            return <Card style={{ width: '18rem' }} className="card-primary">
+            <Card.Img variant="top" src={card.img} className="cardimg"/>
             <Card.Body>
-              <Card.Title>{card.title}</Card.Title>
-              <Card.Title>{card.rating}</Card.Title>
-              <Card.Title>{card.cost}</Card.Title>
-              <Card.Text>
+              <Card.Title 
+              className="cardtitle">
+                {card.title}
+                </Card.Title>
+              <Card.Title 
+              className="cardrating">
+                {card.rating} <i class="fa-solid fa-star"></i>
+                </Card.Title>
+              <Card.Title 
+              className="cardcost">
+                {card.cost}
+                </Card.Title>
+              <Card.Text className="carddescription">
                {card.description}
               </Card.Text>
-              <Button variant="primary">save</Button>
+              <Button variant="primary"> 
+              <i class="fa-solid fa-heart"></i> save
+              </Button>
             </Card.Body>
           </Card>
         })}
