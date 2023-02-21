@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
@@ -13,11 +13,8 @@ const SearchPlaces = () => {
   const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
-  const [currentCity, setCurrentCity] =useState([]);
-  
-
-  const [getCity, { error1 }] = useMutation(GET_CITY);
- // const [getCategory, { error2 }] = useMutation(GET_CATEGORY);
+  const [restaurants, setRestaurants] = useState('');
+  const [getCity, { error }] = useMutation(GET_CITY);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -33,21 +30,21 @@ const SearchPlaces = () => {
         variables: { cityName: searchInput},
       });
 
-      console.log(response.data);
+      const results = response.data.getCity.restaurants;
+      setRestaurants(prevResults => [...prevResults, ...results]);
 
-      // const cityImg = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${response1.data.getCity.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      
+      console.log(results);
+      //console.log(restaurants);
 
-      // console.log(cityImg);
-
-      // const response2 = await getCategory({
-      //   variables: { lat: response1.data.getCity.lat, lng: response1.data.getCity.lng},
-      // });
-
-      // console.log(response2);
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
   };
+
+  useEffect(() => {
+    console.log(restaurants);
+  }, [restaurants]);
 
   return (
     <>
@@ -77,7 +74,33 @@ const SearchPlaces = () => {
       </Jumbotron>
 
 
+      
+      <Container>
+        {/* <h2>
+          {restaurants.length
+            ? `Viewing ${restaurants.length} restaurants:`
+            : 'Search for a city to see its restaurants'}
+        </h2> */}
 
+        {restaurants.length ? (
+        <CardColumns>
+          {restaurants.map((restaurant) => {
+            return (
+              <Card key={restaurant.restaurantId} border='dark'>
+                <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
+                <Card.Body>
+                  <Card.Title>{restaurant.restaurantName}</Card.Title>
+                  <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
+                  
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+        ) : (
+          <p>No restaurants found.</p>
+        )}
+      </Container>
 
       
     </>
