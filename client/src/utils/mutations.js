@@ -32,6 +32,13 @@ export const GET_CITY = gql`
       lat
       lng
       photo
+      restaurants {
+        restaurantId
+        restaurantName
+        priceLevel
+        rating
+        photo
+      }
     }
   }
 `;
