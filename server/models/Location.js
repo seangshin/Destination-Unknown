@@ -21,7 +21,6 @@ const locationSchema = new Schema({
   photo: {
     type: String,
   },
-  savedCategories: [categorySchema],
 });
 
 module.exports = locationSchema;
