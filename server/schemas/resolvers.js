@@ -51,30 +51,31 @@ const resolvers = {
 
     getCity: async (parent, { cityName }) => {
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
-      const response = await axios(url);
-      //const results = JSON.stringify(response.data.results[0]);
+      const response1 = await axios(url);
       
       const cityResults = {
-        cityId: response.data.results[0].place_id,
-        cityName: response.data.results[0].formatted_address,
-        lat: response.data.results[0].geometry.location.lat,
-        lng: response.data.results[0].geometry.location.lng,
-        photo: response.data.results[0].photos[0].photo_reference || '',
+        cityId: response1.data.results[0].place_id,
+        cityName: response1.data.results[0].formatted_address,
+        lat: response1.data.results[0].geometry.location.lat,
+        lng: response1.data.results[0].geometry.location.lng,
+        photo: response1.data.results[0].photos[0].photo_reference || '',
       };
 
-      const category = 'restaurant';//debug
+      const category = 'restaurant';//hardcode for restaurant
       const categorySearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${category}&location=${cityResults.lat}%2C${cityResults.lng}&radius=1500&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
-      const listings = await axios(categorySearchUrl);
-      const listing = await listings.results;
+      const response2 = await axios(categorySearchUrl);
+      const listings = response2.data.results;
 
-      //const listing = results.results;
-      console.log(listing);
-      
-      // const categoryData = listing.map((list) => ({
-      //   categoryId: list.place_id,
-      // }));
+      const restaurantResults = listings.map((restaurant) => ({
+        restaurantId: restaurant.place_id,
+        restaurantName: restaurant.name,
+        priceLevel: restaurant.price_level || '?',
+        rating: restaurant.rating,
+        photo: restaurant.photos[0].photo_reference || '',
+      }));
 
-      // console.log(categoryData);
+      console.log(restaurantResults);
+
 
       return cityResults;
     },
