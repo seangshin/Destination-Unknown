@@ -52,9 +52,9 @@ const resolvers = {
     getCity: async (parent, { cityName }) => {
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${cityName}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
       const response = await axios(url);
-      const results = JSON.stringify(response.data.results[0]);
+      //const results = JSON.stringify(response.data.results[0]);
       
-      const payload = {
+      const cityResults = {
         cityId: response.data.results[0].place_id,
         cityName: response.data.results[0].formatted_address,
         lat: response.data.results[0].geometry.location.lat,
@@ -62,10 +62,23 @@ const resolvers = {
         photo: response.data.results[0].photos[0].photo_reference || '',
       };
 
-      console.log(payload);
-      // console.log(cityData);
-      return payload;
+      const category = 'restaurant';//debug
+      const categorySearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${category}&location=${cityResults.lat}%2C${cityResults.lng}&radius=1500&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      const listings = await axios(categorySearchUrl);
+      const listing = await listings.results;
+
+      //const listing = results.results;
+      console.log(listing);
+      
+      // const categoryData = listing.map((list) => ({
+      //   categoryId: list.place_id,
+      // }));
+
+      // console.log(categoryData);
+
+      return cityResults;
     },
+
   },
 };
 

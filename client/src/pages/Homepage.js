@@ -4,6 +4,7 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
+//import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
 import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -15,7 +16,8 @@ const SearchPlaces = () => {
   const [currentCity, setCurrentCity] =useState([]);
   
 
-  const [getCity, { error }] = useMutation(GET_CITY);
+  const [getCity, { error1 }] = useMutation(GET_CITY);
+ // const [getCategory, { error2 }] = useMutation(GET_CATEGORY);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -27,12 +29,21 @@ const SearchPlaces = () => {
     console.log(searchInput);
 
     try {
-      const response = await getCity({
+      const response1 = await getCity({
         variables: { cityName: searchInput},
       });
 
-      console.log(response);
+      console.log(response1.data.getCity);
 
+      const cityImg = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${response1.data.getCity.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+
+      console.log(cityImg);
+
+      // const response2 = await getCategory({
+      //   variables: { lat: response1.data.getCity.lat, lng: response1.data.getCity.lng},
+      // });
+
+      // console.log(response2);
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
@@ -64,6 +75,11 @@ const SearchPlaces = () => {
           </Form>
         </Container>
       </Jumbotron>
+
+
+
+
+      
     </>
   );
 };
