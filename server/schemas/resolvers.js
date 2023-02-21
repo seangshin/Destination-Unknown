@@ -74,10 +74,17 @@ const resolvers = {
         photo: restaurant.photos[0].photo_reference || '',
       }));
 
-      console.log(restaurantResults);
+      
 
+      const results = {
+        ...cityResults,
+        restaurants: restaurantResults,
+      }
 
-      return cityResults;
+      console.log(results);
+
+      // return cityResults;
+      return results;
     },
 
   },

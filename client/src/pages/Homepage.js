@@ -29,15 +29,15 @@ const SearchPlaces = () => {
     console.log(searchInput);
 
     try {
-      const response1 = await getCity({
+      const response = await getCity({
         variables: { cityName: searchInput},
       });
 
-      console.log(response1.data.getCity);
+      console.log(response.data);
 
-      const cityImg = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${response1.data.getCity.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      // const cityImg = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${response1.data.getCity.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
 
-      console.log(cityImg);
+      // console.log(cityImg);
 
       // const response2 = await getCategory({
       //   variables: { lat: response1.data.getCity.lat, lng: response1.data.getCity.lng},

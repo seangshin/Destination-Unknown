@@ -16,18 +16,27 @@ const typeDefs = gql`
     me: User
   }
 
-  type City {
+  type Search {
     cityId: String
     cityName: String
     lat: String
     lng: String
+    photo: String
+    restaurants: [Restaurant]
+  }
+
+  type Restaurant {
+    restaurantId: String
+    restaurantName: String
+    priceLevel: String
+    rating: String
     photo: String
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    getCity(cityName: String!): City
+    getCity(cityName: String!): Search
   }
 `;
 
