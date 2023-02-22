@@ -12,6 +12,7 @@ const SearchPlaces = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const [restaurants, setRestaurants] = useState('');
+  const [searches, setSearches] = useState([]);
   const [getCity, { error }] = useMutation(GET_CITY);
 
   const handleFormSubmit = async (event) => {
@@ -35,13 +36,38 @@ const SearchPlaces = () => {
 
       
       console.log(results);// debug
-      //console.log(restaurants);
+      console.log(restaurants);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
 
     setSearchInput('');
+  };
+
+  const handleSaveSearch = async (searchId) => {
+    // find the book in `searchedBooks` state by the matching id
+    const restaurantsToSave = restaurants.find((restaurant) => restaurant.restaurantId === searchId);
+
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    console.log(restaurantsToSave);
+
+    // try {
+    //   // // Execute the SAVE_BOOK mutation using the bookToSave data
+    //   const { data } = await saveBook({ 
+    //     variables:  { ...bookToSave },
+    //   });
+    //   // if book successfully saves to user's account, save book id to state
+    //   setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+    // } catch (err) {
+    //   console.log(JSON.stringify(err, null, 2));
+    // }
   };
 
   useEffect(() => {
@@ -88,14 +114,24 @@ const SearchPlaces = () => {
         <CardColumns>
           {restaurants.map((restaurant) => {
 
-            if(restaurant) {
+            if(restaurant && restaurant.restaurantId) {
               return (
                 <Card key={restaurant.restaurantId} border='dark'>
                   <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
                   <Card.Body>
                     <Card.Title>{restaurant.restaurantName}</Card.Title>
                     <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
-                    
+                    {Auth.loggedIn() && (
+                    <Button
+                      // disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                      className='btn-block btn-info'
+                      onClick={() => handleSaveSearch(restaurant.restaurantId)}>
+                        Save
+                      {/* {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
+                        ? 'This book has already been saved!'
+                        : 'Save this Book!'} */}
+                    </Button>
+                  )}
                   </Card.Body>
                 </Card>
               );
@@ -103,7 +139,7 @@ const SearchPlaces = () => {
           })}
         </CardColumns>
         ) : (
-          <p>No restaurants found.</p>
+          <div></div>
         )}
       </Container>
 

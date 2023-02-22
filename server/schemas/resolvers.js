@@ -72,17 +72,6 @@ const resolvers = {
       const response2 = await axios(categorySearchUrl);
       const listings = response2.data.results;
 
-      // const restaurantResults = listings.map((restaurant) => ({
-      //   restaurantId: restaurant.place_id,
-      //   restaurantName: restaurant.name,
-      //   priceLevel: restaurant.price_level || '?',
-      //   rating: restaurant.rating,
-      //   // photo: restaurant.photos[0].photo_reference || '',
-      //   // photo: restaurant.photos[0].photo_reference ? restaurant.photos[0].photo_reference : '',
-        
-      //   photo: restaurant.photos[0].photo_reference ?? '',
-      // }));
-
       const restaurantResults = listings.map((restaurant) => {
         if (!restaurant.photos || !restaurant.photos[0]) {
           return null;
@@ -96,7 +85,6 @@ const resolvers = {
           photo: restaurant.photos[0].photo_reference || '',
         }
       });
-
       
 
       const results = {
