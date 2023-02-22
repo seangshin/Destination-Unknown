@@ -9,8 +9,6 @@ import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchPlaces = () => {
-  // create state for holding returned google api data
-  const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const [restaurants, setRestaurants] = useState('');
@@ -23,7 +21,7 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(searchInput);
+    console.log(searchInput); // debug
 
     try {
       const response = await getCity({
@@ -31,15 +29,19 @@ const SearchPlaces = () => {
       });
 
       const results = response.data.getCity.restaurants;
-      setRestaurants(prevResults => [...prevResults, ...results]);
+      setRestaurants([]); //clear array
+      //setRestaurants(prevResults => [...prevResults, ...results]);
+      setRestaurants([...results]);
 
       
-      console.log(results);
+      console.log(results);// debug
       //console.log(restaurants);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
+
+    setSearchInput('');
   };
 
   useEffect(() => {
@@ -85,16 +87,19 @@ const SearchPlaces = () => {
         {restaurants.length ? (
         <CardColumns>
           {restaurants.map((restaurant) => {
-            return (
-              <Card key={restaurant.restaurantId} border='dark'>
-                <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
-                <Card.Body>
-                  <Card.Title>{restaurant.restaurantName}</Card.Title>
-                  <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
-                  
-                </Card.Body>
-              </Card>
-            );
+
+            if(restaurant) {
+              return (
+                <Card key={restaurant.restaurantId} border='dark'>
+                  <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
+                  <Card.Body>
+                    <Card.Title>{restaurant.restaurantName}</Card.Title>
+                    <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
+                    
+                  </Card.Body>
+                </Card>
+              );
+            } else return;
           })}
         </CardColumns>
         ) : (
