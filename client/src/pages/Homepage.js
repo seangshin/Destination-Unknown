@@ -62,10 +62,8 @@ const SearchPlaces = () => {
               </Col>
             </Form.Row>
           </Form>
-
         </Container>
       </Jumbotron>
-     
     </>
   );
 };
