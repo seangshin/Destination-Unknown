@@ -2,19 +2,19 @@ const { Schema } = require('mongoose');
 
 // This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedBooks` array in User.js
 const locationSchema = new Schema({
-  cityId: {
+  restaurantId: {
     type: String,
     //required: true,
   },
-  cityName: {
+  restaurantName: {
     type: String,
     //required: true,
   },
-  lat: {
+  priceLevel: {
     type: String,
     //required: true,
   },
-  lng: {
+  rating: {
     type: String,
     //required: true,
   },

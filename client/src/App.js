@@ -5,9 +5,8 @@ import { setContext } from "@apollo/client/link/context";
 import Signup from "./pages/signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
-// import Home from "./pages/home";
-import Homepage from "./pages/Homepage.js";
-
+import Homepage from "./pages/Homepage";
+import Profile from "./pages/Profile";
 // import Homehero from "./components/Herosection"
 // import Searchcards from "./components/Searchcards";
 
@@ -40,15 +39,18 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <>
+      
         <Navigation />
+        
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
           {/* <Route path='search' element={<Search />} /> */}
           <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
-        {/* <Homepage />
-        <Searchcards/>  */}
+        
+        
       </>
       </Router>
     </ApolloProvider>
