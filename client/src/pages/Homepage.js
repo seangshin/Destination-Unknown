@@ -32,7 +32,6 @@ const SearchPlaces = () => {
 
       const results = response.data.getCity.restaurants;
       setRestaurants([]); //clear array
-      //setRestaurants(prevResults => [...prevResults, ...results]);
       setRestaurants([...results]);
 
       
@@ -47,7 +46,7 @@ const SearchPlaces = () => {
   };
 
   const handleSaveSearch = async (searchId) => {
-    // find the book in `searchedBooks` state by the matching id
+    // find the restaurant in `restaurantsToSave` by the matching id
     const restaurantsToSave = restaurants.find((restaurant) => restaurant.restaurantId === searchId);
 
     // get token
@@ -64,8 +63,6 @@ const SearchPlaces = () => {
       const { data } = await saveSearch({ 
         variables:  { ...restaurantsToSave },
       });
-      // if book successfully saves to user's account, save book id to state
-      // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
@@ -106,12 +103,6 @@ const SearchPlaces = () => {
 
       
       <Container>
-        {/* <h2>
-          {restaurants.length
-            ? `Viewing ${restaurants.length} restaurants:`
-            : 'Search for a city to see its restaurants'}
-        </h2> */}
-
         {restaurants.length ? (
         <CardColumns>
           {restaurants.map((restaurant) => {
