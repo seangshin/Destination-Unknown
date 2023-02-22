@@ -8,14 +8,6 @@ const typeDefs = gql`
     savedLocations: [Restaurant]!
   }
 
-  # type Location {
-  #   restaurantId: String
-  #   restaurantName: String
-  #   priceLevel: String
-  #   rating: String
-  #   photo: String
-  # }
-
   type Auth {
     token: ID!
     user: User
@@ -47,6 +39,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     getCity(cityName: String!): Search
     saveSearch(restaurantId: String, restaurantName: String, priceLevel: String, rating: String, photo: String): User
+    removeSearch(restaurantId: String!): User
   }
 `;
 

@@ -110,6 +110,17 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    removeSearch: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedLocations: { restaurantId: args.restaurantId } } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 };
 

@@ -60,19 +60,19 @@ export const SAVE_SEARCH = gql`
   }
 `;
 
-// export const REMOVE_BOOK = gql`
-//   mutation removeBook($bookId: String!) {
-//     removeBook(bookId: $bookId) {
-//       _id
-//       username
-//       email
-//       savedBooks {
-//         bookId
-//         authors
-//         description
-//         title
-//         image
-//       }
-//     }
-//   }
-// `;
+export const REMOVE_SEARCH = gql`
+  mutation removeSearch($restaurantId: String!) {
+    removeSearch(restaurantId: $restaurantId) {
+      _id
+      username
+      email
+      savedLocations {
+        restaurantId
+        restaurantName
+        priceLevel
+        rating
+        photo
+      }
+    }
+  }
+`;
