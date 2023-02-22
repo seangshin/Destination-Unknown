@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
 //import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
-import { GET_CITY } from '../utils/mutations';
+import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchPlaces = () => {
@@ -13,7 +13,8 @@ const SearchPlaces = () => {
   const [searchInput, setSearchInput] = useState('');
   const [restaurants, setRestaurants] = useState('');
   const [searches, setSearches] = useState([]);
-  const [getCity, { error }] = useMutation(GET_CITY);
+  const [getCity, { error1 }] = useMutation(GET_CITY);
+  const [saveSearch, { error2 }] = useMutation(SAVE_SEARCH);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -58,16 +59,17 @@ const SearchPlaces = () => {
 
     console.log(restaurantsToSave);
 
-    // try {
-    //   // // Execute the SAVE_BOOK mutation using the bookToSave data
-    //   const { data } = await saveBook({ 
-    //     variables:  { ...bookToSave },
-    //   });
-    //   // if book successfully saves to user's account, save book id to state
-    //   setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-    // } catch (err) {
-    //   console.log(JSON.stringify(err, null, 2));
-    // }
+    try {
+      // // Execute the SAVE_SEARCH mutation 
+      const { data } = await saveSearch({ 
+        variables:  { ...restaurantsToSave },
+      });
+      // if book successfully saves to user's account, save book id to state
+      // setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+    } catch (err) {
+      console.log(JSON.stringify(err, null, 2));
+    }
+
   };
 
   useEffect(() => {
@@ -93,7 +95,7 @@ const SearchPlaces = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                  Search
                 </Button>
               </Col>
             </Form.Row>

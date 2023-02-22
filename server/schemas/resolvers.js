@@ -98,6 +98,18 @@ const resolvers = {
       return results;
     },
 
+    saveSearch: async (parent, args, context) => {
+      if (context.user) {
+        //const { bookId, authors, description, title, image, link } = args;
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedLocations: args } },
+          { new: true }
+        );
+        return user;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 };
 

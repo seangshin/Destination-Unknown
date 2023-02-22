@@ -43,22 +43,22 @@ export const GET_CITY = gql`
   }
 `;
 
-// export const SAVE_BOOK = gql`
-//   mutation saveBook($bookId: String!, $authors: [String], $description: String!, $title: String!, $image: String, $link: String) {
-//     saveBook(bookId: $bookId, authors: $authors, description: $description, title: $title, image: $image, link: $link) {
-//       _id
-//       username
-//       email
-//       savedBooks {
-//         bookId
-//         authors
-//         description
-//         title
-//         image
-//       }
-//     }
-//   }
-// `;
+export const SAVE_SEARCH = gql`
+  mutation saveSearch($restaurantId: String!, $restaurantName: String!, $priceLevel: String!, $rating: String!, $photo: String) {
+    saveSearch(restaurantId: $restaurantId, restaurantName: $restaurantName, priceLevel: $priceLevel, rating: $rating, photo: $photo) {
+      _id
+      username
+      email
+      savedLocations {
+        restaurantId
+        restaurantName
+        priceLevel
+        rating
+        photo
+      }
+    }
+  }
+`;
 
 // export const REMOVE_BOOK = gql`
 //   mutation removeBook($bookId: String!) {

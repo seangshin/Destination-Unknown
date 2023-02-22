@@ -5,7 +5,16 @@ const typeDefs = gql`
     _id: ID
     username: String!
     email: String!
+    savedLocations: [Restaurant]!
   }
+
+  # type Location {
+  #   restaurantId: String
+  #   restaurantName: String
+  #   priceLevel: String
+  #   rating: String
+  #   photo: String
+  # }
 
   type Auth {
     token: ID!
@@ -37,6 +46,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     getCity(cityName: String!): Search
+    saveSearch(restaurantId: String, restaurantName: String, priceLevel: String, rating: String, photo: String): User
   }
 `;
 
