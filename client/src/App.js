@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
-import Search from "./pages/Search";
+import Search from "./pages/Homepage";
 
 import Homehero from "./components/Herosection"
 import Searchcards from "./components/Searchcards";
@@ -38,7 +38,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      {/* <Router>
       <>
         <Navigation />
         <Routes>
@@ -46,11 +46,11 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path='search' element={<Search />} />
           <Route path="login" element={<Login />} />
-        </Routes>
+        </Routes> */}
         <Search />
-        <Searchcards/> 
-      </>
-      </Router>
+        {/* <Searchcards/> 
+      </> */}
+      {/* </Router> */}
     </ApolloProvider>
   );
 }
