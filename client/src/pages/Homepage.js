@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-//import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
 import { GET_CITY } from '../utils/mutations';
 //import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchPlaces = () => {
+  // create state for holding returned google api data
+  const [searchedPlaces, setSearchedPlaces] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
-  const [restaurants, setRestaurants] = useState('');
+  const [currentCity, setCurrentCity] =useState([]);
+  
+
   const [getCity, { error }] = useMutation(GET_CITY);
 
   const handleFormSubmit = async (event) => {
@@ -21,32 +24,19 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(searchInput); // debug
+    console.log(searchInput);
 
     try {
       const response = await getCity({
         variables: { cityName: searchInput},
       });
 
-      const results = response.data.getCity.restaurants;
-      setRestaurants([]); //clear array
-      //setRestaurants(prevResults => [...prevResults, ...results]);
-      setRestaurants([...results]);
-
-      
-      console.log(results);// debug
-      //console.log(restaurants);
+      console.log(response);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
-
-    setSearchInput('');
   };
-
-  useEffect(() => {
-    console.log(restaurants);
-  }, [restaurants]);
 
   return (
     <>
@@ -74,40 +64,6 @@ const SearchPlaces = () => {
           </Form>
         </Container>
       </Jumbotron>
-
-
-      
-      <Container>
-        {/* <h2>
-          {restaurants.length
-            ? `Viewing ${restaurants.length} restaurants:`
-            : 'Search for a city to see its restaurants'}
-        </h2> */}
-
-        {restaurants.length ? (
-        <CardColumns>
-          {restaurants.map((restaurant) => {
-
-            if(restaurant) {
-              return (
-                <Card key={restaurant.restaurantId} border='dark'>
-                  <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
-                  <Card.Body>
-                    <Card.Title>{restaurant.restaurantName}</Card.Title>
-                    <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
-                    
-                  </Card.Body>
-                </Card>
-              );
-            } else return;
-          })}
-        </CardColumns>
-        ) : (
-          <p>No restaurants found.</p>
-        )}
-      </Container>
-
-      
     </>
   );
 };

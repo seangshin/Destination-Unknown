@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
-import Homepage from "./pages/Homepage";
+import Search from "./pages/Search";
 
 import Homehero from "./components/Herosection"
 import Searchcards from "./components/Searchcards";
@@ -44,10 +44,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path="signup" element={<Signup />} />
+          <Route path='search' element={<Search />} />
           <Route path="login" element={<Login />} />
         </Routes>
-        <Homepage/>
-        <Searchcards/>
+        <Search />
+        <Searchcards/> 
       </>
       </Router>
     </ApolloProvider>
