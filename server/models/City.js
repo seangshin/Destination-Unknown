@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+const restaurantSchema = require('./Restaurant')
+
 const citySchema = new Schema({
     cityId: {
         type: String,

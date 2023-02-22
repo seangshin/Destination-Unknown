@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 // import schema from Book.js
 //const locationSchema = require('./Location');
+const citySchema = require('./City')
 
 const userSchema = new Schema(
   {
