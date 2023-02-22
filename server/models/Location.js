@@ -23,4 +23,5 @@ const locationSchema = new Schema({
   },
 });
 
+//add restaurant 
 module.exports = locationSchema;
