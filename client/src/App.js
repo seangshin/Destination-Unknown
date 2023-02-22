@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from "@apollo/client/link/context";
-import Signup from "./pages/signup";
+import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
@@ -39,9 +39,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <>
-      
         <Navigation />
-        
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
@@ -49,8 +47,6 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
         </Routes>
-        
-        
       </>
       </Router>
     </ApolloProvider>
