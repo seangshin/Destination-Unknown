@@ -5,11 +5,11 @@ import { setContext } from "@apollo/client/link/context";
 import Signup from "./pages/signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
-import Home from "./pages/home";
+// import Home from "./pages/home";
 import Homepage from "./pages/Homepage.js";
 
-import Homehero from "./components/Herosection"
-import Searchcards from "./components/Searchcards";
+// import Homehero from "./components/Herosection"
+// import Searchcards from "./components/Searchcards";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -42,13 +42,13 @@ function App() {
       <>
         <Navigation />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
-          <Route path='search' element={<Search />} />
+          {/* <Route path='search' element={<Search />} /> */}
           <Route path="login" element={<Login />} />
         </Routes>
-        <Homepage />
-        <Searchcards/> 
+        {/* <Homepage />
+        <Searchcards/>  */}
       </>
       </Router>
     </ApolloProvider>
