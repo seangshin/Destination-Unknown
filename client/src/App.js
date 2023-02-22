@@ -2,13 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from "@apollo/client/link/context";
-import Signup from "./pages/Signup";
+import Signup from "./pages/signup";
 import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
 import Profile from "./pages/Profile";
 // import Homehero from "./components/Herosection"
-import Searchcards from "./components/Searchcards";
+// import Searchcards from "./components/Searchcards";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -45,6 +45,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
+          {/* <Route path='search' element={<Search />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
         </Routes>
@@ -52,10 +53,6 @@ function App() {
         
       </>
       </Router>
-      
-      {/* <Searchcards/> */}
-      {/* <Navigation /> */}
-      {/* <Homepage /> */}
     </ApolloProvider>
   );
 }
