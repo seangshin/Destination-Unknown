@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const restaurantSchema = require('./Restaurant')
 
-const citySchema = new Schema({
+const searchSchema = new Schema({
     cityId: {
         type: String,
     },
@@ -21,4 +21,4 @@ const citySchema = new Schema({
     restaurant: [restaurantSchema],     
 });
 
-model.exports = citySchema;
+model.exports = searchSchema;

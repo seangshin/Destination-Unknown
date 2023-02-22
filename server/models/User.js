@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 // import schema from Book.js
 //const locationSchema = require('./Location');
-const citySchema = require('./City')
+const searchSchema = require('./Search')
 
 const userSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    savedCities: [citySchema],
+    savedCities: [searchSchema],
     // set savedBooks to be an array of data that adheres to the bookSchema
     //savedLocations: [locationSchema],
   },
