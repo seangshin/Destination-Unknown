@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import "../styles/mainpage.css";
 
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-
 import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
-
 
 const SearchPlaces = () => {
   // create state for holding our search field data
@@ -22,8 +21,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(searchInput); // debug
-
     try {
       const response = await getCity({
         variables: { cityName: searchInput},
@@ -32,10 +29,6 @@ const SearchPlaces = () => {
       const results = response.data.getCity.restaurants;
       setRestaurants([]); //clear array
       setRestaurants([...results]);
-
-      
-      console.log(results);// debug
-      console.log(restaurants);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
@@ -55,8 +48,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(restaurantsToSave);
-
     try {
       // // Execute the SAVE_SEARCH mutation 
       const { data } = await saveSearch({ 
@@ -68,37 +59,40 @@ const SearchPlaces = () => {
 
   };
 
-  useEffect(() => {
-    console.log(restaurants);
-  }, [restaurants]);
+  useEffect(() => {}, [restaurants]);
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Search for Places!</h1>
+    
+      <Jumbotron fluid className='search-container-css'>
+        <Container >
+          <h1 className="searchtitle">Search for Local Restaurants!</h1> 
           <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
+            <Form.Row className="justify-content-md-center">
+              <Col xs={12} md={6}>
                 <Form.Control
+                  className='text-center'
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Search for a place'
+                  placeholder='Search for a City, State, or Country'
                 />
               </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Search
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Button type='submit' variant='success' 
+                size='lg'
+                className="searchbtn-home">
+                <i className="fa-solid fa-thumbtack"></i> Search
                 </Button>
               </Col>
             </Form.Row>
           </Form>
         </Container>
       </Jumbotron>
-
 
       
       <Container>
@@ -108,18 +102,21 @@ const SearchPlaces = () => {
 
             if(restaurant && restaurant.restaurantId) {
               return (
-                <Card key={restaurant.restaurantId} border='dark'>
+                <Card key={restaurant.restaurantId} border='border-bottom border-warning' className="cardbody-css">
                   <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
                   <Card.Body>
-                    <Card.Title>{restaurant.restaurantName}</Card.Title>
-                    <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
+                    <Card.Title className="cardtitle">{restaurant.restaurantName}</Card.Title>
+                    <Card.Subtitle className="cardprice">
+                    <i className="fa-solid fa-wallet"></i> {`Restaurant Price: ${restaurant.priceLevel}`}
+                    </Card.Subtitle>
+                    <Card.Subtitle className="cardrating"><i className="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}
+                    </Card.Subtitle>
                     {Auth.loggedIn() && (
-                    <Button
-                     
-                      className='btn-block btn-info'
+                    <Button 
+                      className='btn-info center save-btn-css'
+                      variant="secondary" size="sm"
                       onClick={() => handleSaveSearch(restaurant.restaurantId)}>
-                        Save
-                      
+                       Save <i className="fa-solid fa-heart"></i>
                     </Button>
                   )}
                   </Card.Body>

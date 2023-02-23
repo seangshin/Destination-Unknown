@@ -1,13 +1,3 @@
 .nav-container{
-  /* background: url('../assets/hero-image.jpg') center center/cover no-repeat;
-  height: 90vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
-  object-fit: contain; */
   height: 10vh;
 }
