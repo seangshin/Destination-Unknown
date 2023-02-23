@@ -5,15 +5,12 @@ import "../styles/mainpage.css";
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-//import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
 import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
-//import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
 const SearchPlaces = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const [restaurants, setRestaurants] = useState('');
-  const [searches, setSearches] = useState([]);
   const [getCity, { error1 }] = useMutation(GET_CITY);
   const [saveSearch, { error2 }] = useMutation(SAVE_SEARCH);
 
@@ -24,7 +21,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-
     try {
       const response = await getCity({
         variables: { cityName: searchInput},
@@ -33,9 +29,6 @@ const SearchPlaces = () => {
       const results = response.data.getCity.restaurants;
       setRestaurants([]); //clear array
       setRestaurants([...results]);
-
-      
-      console.log(restaurants);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
@@ -55,8 +48,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(restaurantsToSave);
-
     try {
       // // Execute the SAVE_SEARCH mutation 
       const { data } = await saveSearch({ 
@@ -68,9 +59,7 @@ const SearchPlaces = () => {
 
   };
 
-  useEffect(() => {
-    console.log(restaurants);
-  }, [restaurants]);
+  useEffect(() => {}, [restaurants]);
 
   return (
     <>
