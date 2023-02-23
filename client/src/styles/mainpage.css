@@ -1,52 +1,50 @@
-.search-container-css{
-    background: url('../assets/van-life.jpg') center center/cover no-repeat;
-    background-color: transparent !important;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.4);
-    object-fit: contain;
-   margin:25px;
+.search-container-css {
+  background: url("../assets/van-life.jpg") center center/cover no-repeat;
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  object-fit: contain;
+  margin: 25px;
 }
 
-.searchtitle{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color:white !important;
+.searchtitle {
+  color: white !important;
 }
 
-.cardtitle{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 2px;
+.cardtitle {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2px;
 }
 
 .cardprice .cardrating {
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.cardprice{
-    margin-bottom: 10px !important;
+.cardprice {
+  margin-bottom: 10px !important;
 }
 
-.save-btn-css{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-left: 100px !important;
-    margin-top: 5px;
-    background-color:#B8DAD9 !important;
-    border-color: transparent !important;
-    color: #48b0ac !important;
+.save-btn-css {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 0 auto;
+  background-color: #b8dad9 !important;
+  border-color: transparent !important;
+  color: #48b0ac !important;
 }
 
-.save-btn-css:hover{
-    color: white !important;
+.save-btn-css:hover {
+  color: white !important;
 }
 
-.searchbtn-home{
-    margin: 1rem;
+.searchbtn-home {
+  margin: 1rem;
 }

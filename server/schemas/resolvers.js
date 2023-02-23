@@ -1,9 +1,8 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
-const { signToken } = require('../utils/auth');
-const axios = require('axios');
-require('dotenv').config();
-
+const { AuthenticationError } = require("apollo-server-express");
+const { User } = require("../models");
+const { signToken } = require("../utils/auth");
+const axios = require("axios");
+require("dotenv").config();
 
 const resolvers = {
   Query: {
@@ -13,7 +12,7 @@ const resolvers = {
         // Find the authenticated user by their id
         return User.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     // Query to get all users
     users: async (parent, args, context) => {
@@ -38,7 +37,7 @@ const resolvers = {
 
       if (!user) {
         // If no user was found, throw an error
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError("No user found with this email address");
       }
 
       // Check if the provided password is correct
@@ -46,7 +45,7 @@ const resolvers = {
 
       if (!correctPw) {
         // If the password is incorrect, throw an error
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       // Sign a new token for the user
@@ -56,26 +55,25 @@ const resolvers = {
     },
 
     getCity: async (parent, { cityName }) => {
-      const check = cityName.includes(' ');
+      const check = cityName.includes(" ");
       let validatedCityName = cityName;
-      if(check) {
-        validatedCityName = cityName.replace(' ', '+');
-      } else validatedCityName =cityName;
+      if (check) {
+        validatedCityName = cityName.replace(" ", "+");
+      } else validatedCityName = cityName;
 
+      console.log({ validatedCityName, env: process.env.API_KEY });
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${validatedCityName}&key=${process.env.API_KEY}`;
       const response1 = await axios(url);
 
-      console.log(response1);
-      
       const cityResults = {
         cityId: response1.data.results[0].place_id,
         cityName: response1.data.results[0].formatted_address,
         lat: response1.data.results[0].geometry.location.lat,
         lng: response1.data.results[0].geometry.location.lng,
-        photo: response1.data.results[0].photos[0].photo_reference || '',
+        photo: response1.data.results[0].photos[0].photo_reference || "",
       };
 
-      const category = 'restaurant';//hardcode for restaurant
+      const category = "restaurant"; //hardcode for restaurant
       const categorySearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${category}&location=${cityResults.lat}%2C${cityResults.lng}&radius=1500&key=${process.env.API_KEY}`;
       const response2 = await axios(categorySearchUrl);
       const listings = response2.data.results;
@@ -88,17 +86,16 @@ const resolvers = {
         return {
           restaurantId: restaurant.place_id,
           restaurantName: restaurant.name,
-          priceLevel: restaurant.price_level || '?',
+          priceLevel: restaurant.price_level || "?",
           rating: restaurant.rating,
-          photo: restaurant.photos[0].photo_reference || '',
-        }
+          photo: restaurant.photos[0].photo_reference || "",
+        };
       });
-      
 
       const results = {
         ...cityResults,
         restaurants: restaurantResults,
-      }
+      };
 
       return results;
     },
@@ -113,7 +110,7 @@ const resolvers = {
         );
         return user;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     removeSearch: async (parent, args, context) => {
@@ -124,7 +121,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
