@@ -20,7 +20,6 @@ const SearchPlaces = () => {
     if (!searchInput) {
       return false;
     }
-    console.log('search registerd')
 
     try {
       const response = await getCity({
@@ -72,16 +71,17 @@ const SearchPlaces = () => {
             <Form.Row className="justify-content-md-center">
               <Col xs={12} md={6}>
                 <Form.Control
+                  className='text-center'
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   type='text'
                   size='lg'
-                  placeholder='Pick A City'
+                  placeholder='Search for a City, State, or Country'
                 />
               </Col>
-              </Form.Row>
-              <Form.Row>
+            </Form.Row>
+            <Form.Row>
               <Col xs={12} md={12}>
                 <Button type='submit' variant='success' 
                 size='lg'
