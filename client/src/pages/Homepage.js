@@ -4,9 +4,9 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-//import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
+
 import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
-//import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+
 
 const SearchPlaces = () => {
   // create state for holding our search field data
@@ -116,13 +116,11 @@ const SearchPlaces = () => {
                     <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
                     {Auth.loggedIn() && (
                     <Button
-                      // disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                     
                       className='btn-block btn-info'
                       onClick={() => handleSaveSearch(restaurant.restaurantId)}>
                         Save
-                      {/* {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
-                        ? 'This book has already been saved!'
-                        : 'Save this Book!'} */}
+                      
                     </Button>
                   )}
                   </Card.Body>

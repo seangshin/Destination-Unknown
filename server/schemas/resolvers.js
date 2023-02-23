@@ -8,8 +8,8 @@ const resolvers = {
     // Query to get the currently authenticated user
     me: async (parent, args, context) => {
       if (context.user) {
-        // Find the authenticated user by their id and populate their saved books
-        return User.findOne({ _id: context.user._id }).populate('savedBooks');
+        
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -100,7 +100,7 @@ const resolvers = {
 
     saveSearch: async (parent, args, context) => {
       if (context.user) {
-        //const { bookId, authors, description, title, image, link } = args;
+        
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedLocations: args } },
