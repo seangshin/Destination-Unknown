@@ -25,6 +25,7 @@ export default function Navigation() {
             {Auth.loggedIn() ? (
               <>
                 <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
+                <Nav.Link as={Link} to='/feed'>Feed</Nav.Link>
                 <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
               </>
             ) : (
