@@ -84,7 +84,7 @@ const SearchPlaces = () => {
                 <Button type='submit' variant='success' 
                 size='lg'
                 className="searchbtn-home">
-                <i className="fa-solid fa-thumbtack"></i> Search
+                Search <i className="fa-solid fa-thumbtack"></i>
                 </Button>
               </Col>
             </Form.Row>
@@ -93,8 +93,9 @@ const SearchPlaces = () => {
       </Jumbotron>
 
       
-      <Container className='container-profile'>
+      
         {restaurants.length ? (
+          <Container className='container-profile'>
         <CardColumns>
           {restaurants.map((restaurant) => {
 
@@ -102,16 +103,16 @@ const SearchPlaces = () => {
               return (
                 <Card key={restaurant.restaurantId} border='border-bottom border-warning' className="cardbody-css">
                   <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
-                  <Card.Body>
-                    <Card.Title className="cardtitle">{restaurant.restaurantName}</Card.Title>
-                    <Card.Subtitle className="cardprice">
+                  <Card.Body className='text-center'>
+                    <Card.Title className="cardtitle m-2">{restaurant.restaurantName}</Card.Title>
+                    <Card.Subtitle className="cardprice  m-2">
                     <i className="fa-solid fa-wallet"></i> {`Restaurant Price: ${restaurant.priceLevel}`}
                     </Card.Subtitle>
-                    <Card.Subtitle className="cardrating"><i className="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}
+                    <Card.Subtitle className="cardrating  m-2"><i className="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}
                     </Card.Subtitle>
                     {Auth.loggedIn() && (
                     <Button 
-                      className='btn-info center save-btn-css'
+                      className='btn-info center save-btn-css m-2'
                       variant="secondary" size="sm"
                       onClick={() => handleSaveSearch(restaurant.restaurantId)}>
                        Save <i className="fa-solid fa-heart"></i>
@@ -123,10 +124,11 @@ const SearchPlaces = () => {
             } else return;
           })}
         </CardColumns>
+        </Container>
         ) : (
           <div></div>
         )}
-      </Container>
+      
 
       
     </>

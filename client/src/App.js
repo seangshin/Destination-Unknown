@@ -13,7 +13,6 @@ import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
-import "./styles/global.css";
 import Feed from "./pages/Feed";
 
 // import Homehero from "./components/Herosection"

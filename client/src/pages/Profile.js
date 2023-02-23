@@ -62,10 +62,12 @@ const Profile = () => {
             return (
               <Card key={restaurant.restaurantId} border='dark'>
                 <Card.Img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`} alt={`The image for ${restaurant.restaurantName}`} variant='top' />
-                <Card.Body>
-                  <Card.Title>{restaurant.restaurantName}</Card.Title>
-                  <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
-                  {/* <Card.Text>{restaurant.description}</Card.Text> */}
+                <Card.Body className='text-center'>
+                  <Card.Title className="cardtitle m-2">{restaurant.restaurantName}</Card.Title>
+                  <Card.Subtitle className="cardprice  m-2">
+                    <i className="fa-solid fa-wallet"></i> {`Restaurant Price: ${restaurant.priceLevel}`}
+                  </Card.Subtitle>
+                  <Card.Subtitle className="cardrating  m-2"><i className="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}</Card.Subtitle>
                   <div className="d-flex">
                     <Button
                       className="btn-warning center delete-btn-css mt-3"

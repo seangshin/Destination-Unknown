@@ -7,11 +7,6 @@ import "../styles/feed.css";
 
 const Feed = () => {
   const { loading, data } = useQuery(GET_USERS);
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -29,11 +24,6 @@ const Feed = () => {
       : 'No users posts yet!'}</h1>
         </Container>
       </Jumbotron>
-    {/* <h2 className='p-5'>
-      {usersData.length
-      ? `Feed showing ${usersData.length} ${usersData.length === 1 ? ' post' : ' posts'}:`
-      : 'No users posts yet!'}
-    </h2> */}
       
     <div>
       {usersData &&
