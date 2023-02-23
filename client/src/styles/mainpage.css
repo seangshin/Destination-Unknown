@@ -46,3 +46,7 @@
 .save-btn-css:hover{
     color: white !important;
 }
+
+.searchbtn-home{
+    margin: 1rem;
+}
