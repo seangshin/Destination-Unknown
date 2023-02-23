@@ -2,14 +2,16 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 const axios = require('axios');
+require('dotenv').config();
+
 
 const resolvers = {
   Query: {
     // Query to get the currently authenticated user
     me: async (parent, args, context) => {
       if (context.user) {
-        // Find the authenticated user by their id and populate their saved books
-        return User.findOne({ _id: context.user._id }).populate('savedBooks');
+        // Find the authenticated user by their id
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -56,7 +58,7 @@ const resolvers = {
         validatedCityName = cityName.replace(' ', '+');
       } else validatedCityName =cityName;
 
-      const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${validatedCityName}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${validatedCityName}&key=${process.env.API_KEY}`;
       const response1 = await axios(url);
       
       const cityResults = {
@@ -68,7 +70,7 @@ const resolvers = {
       };
 
       const category = 'restaurant';//hardcode for restaurant
-      const categorySearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${category}&location=${cityResults.lat}%2C${cityResults.lng}&radius=1500&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`;
+      const categorySearchUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${category}&location=${cityResults.lat}%2C${cityResults.lng}&radius=1500&key=${process.env.API_KEY}`;
       const response2 = await axios(categorySearchUrl);
       const listings = response2.data.results;
 
@@ -92,9 +94,6 @@ const resolvers = {
         restaurants: restaurantResults,
       }
 
-      console.log(results);
-
-      // return cityResults;
       return results;
     },
 

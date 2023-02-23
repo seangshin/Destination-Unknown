@@ -12,7 +12,7 @@ export default function Herosection() {
       <Button 
       className='btn btn-light hero-button' 
       type="button" >
-      <Link to='search'> GET STARTED </Link>
+      <Link to='homepage'> GET STARTED </Link>
       </Button>
     </div>
   )
