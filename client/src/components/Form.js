@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// Here we import a helper function that will check if the email is valid
-//import { validateEmail } from '../../utils/helpers'; // import helper function to check if email is valid
 
 function Form() {
   const [name, setName] = useState('');
@@ -18,9 +16,6 @@ function Form() {
     if (!email ) {
       errorMessage = errorMessage + 'An email is required. ';
     }
-    // if (!validateEmail(email) ) {
-    //   errorMessage = errorMessage + 'Email is invalid, a valid email is required. ';
-    // }
     if (!password) {
       errorMessage = errorMessage + 'A password is required. ';
     }
