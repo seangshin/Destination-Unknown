@@ -4,11 +4,11 @@ import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'reac
 import { useMutation } from '@apollo/client';
 
 import Auth from '../utils/auth';
-
+//import { GET_CITY, GET_CATEGORY } from '../utils/mutations';
 import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
+//import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
-
-const SearchPlaces = () => {
+const Feed = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const [restaurants, setRestaurants] = useState('');
@@ -22,8 +22,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(searchInput); // debug
-
     try {
       const response = await getCity({
         variables: { cityName: searchInput},
@@ -32,10 +30,6 @@ const SearchPlaces = () => {
       const results = response.data.getCity.restaurants;
       setRestaurants([]); //clear array
       setRestaurants([...results]);
-
-      
-      console.log(results);// debug
-      console.log(restaurants);
 
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
@@ -55,8 +49,6 @@ const SearchPlaces = () => {
       return false;
     }
 
-    console.log(restaurantsToSave);
-
     try {
       // // Execute the SAVE_SEARCH mutation 
       const { data } = await saveSearch({ 
@@ -68,9 +60,7 @@ const SearchPlaces = () => {
 
   };
 
-  useEffect(() => {
-    console.log(restaurants);
-  }, [restaurants]);
+  useEffect(() => {}, [restaurants]);
 
   return (
     <>
@@ -115,11 +105,13 @@ const SearchPlaces = () => {
                     <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
                     {Auth.loggedIn() && (
                     <Button
-                     
+                      // disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                       className='btn-block btn-info'
                       onClick={() => handleSaveSearch(restaurant.restaurantId)}>
                         Save
-                      
+                      {/* {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
+                        ? 'This book has already been saved!'
+                        : 'Save this Book!'} */}
                     </Button>
                   )}
                   </Card.Body>
@@ -138,4 +130,4 @@ const SearchPlaces = () => {
   );
 };
 
-export default SearchPlaces;
+export default Feed;
