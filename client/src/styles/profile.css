@@ -3,6 +3,16 @@
   display: flex;
 }
 
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  border: 1p solid white;
+  padding-top: 10px;
+  justify-content: center;
+  background-color: #ffc0cb8a;
+  font: orange;
+}
+
 .profileH2 {
   display: flex;
   color: black;

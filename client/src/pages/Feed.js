@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Jumbotron, Container, Button, Card, CardColumns, Carousel } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../utils/queries';
+import "../styles/feed.css";
 
 
 const Feed = () => {
@@ -21,11 +22,18 @@ const Feed = () => {
 
   return (
     <>
-    <h2 className='p-5'>
+    <Jumbotron fluid className='text-light bg-dark'>
+        <Container>
+          <h1>{usersData.length
+      ? `Feed showing ${usersData.length} ${usersData.length === 1 ? ' post' : ' posts'}`
+      : 'No users posts yet!'}</h1>
+        </Container>
+      </Jumbotron>
+    {/* <h2 className='p-5'>
       {usersData.length
       ? `Feed showing ${usersData.length} ${usersData.length === 1 ? ' post' : ' posts'}:`
       : 'No users posts yet!'}
-    </h2>
+    </h2> */}
       
     <div>
       {usersData &&
@@ -41,7 +49,7 @@ const Feed = () => {
                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${location.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`}
                     alt={`The image for ${location.restaurantName}`}
                   />
-                  <Carousel.Caption>
+                  <Carousel.Caption className='container-profile'>
                   <h3>{location.restaurantName}</h3>
                   </Carousel.Caption>
                 </Carousel.Item>
