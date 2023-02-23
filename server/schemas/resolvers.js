@@ -14,6 +14,10 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    // Query to get all users
+    users: async (parent, args, context) => {
+      return User.find();
+    },
   },
 
   Mutation: {
