@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import { Jumbotron, Container, Button, Card, CardColumns, Carousel } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
+import { GET_USERS } from '../utils/queries';
+
+
+const Feed = () => {
+  const { loading, data } = useQuery(GET_USERS);
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
+
+  const usersData = data?.users || [];
+  console.log(usersData);
+
+  return (
+    <>
+    <h2 className='p-5'>
+      {usersData.length
+      ? `Feed showing ${usersData.length} ${usersData.length === 1 ? ' post' : ' posts'}:`
+      : 'No users posts yet!'}
+    </h2>
+      
+    <div>
+      {usersData &&
+        usersData.map((user) => (
+          <Container key={user._id}>
+            <h2>{user.username}</h2>
+            <Carousel interval={null}>
+              {user.savedLocations.map((location) => (
+                <Carousel.Item key={location._id}>
+                  <img
+                    className="d-block w-100"
+                    style={{ width: "200px", height: "400px", objectFit: "cover" }}
+                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${location.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`}
+                    alt={`The image for ${location.restaurantName}`}
+                  />
+                  <Carousel.Caption>
+                  <h3>{location.restaurantName}</h3>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Container>
+        ))}
+    </div>
+    
+    </>
+  );
+}
+
+  
+
+
+export default Feed;

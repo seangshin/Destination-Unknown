@@ -15,6 +15,10 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    // Query to get all users
+    users: async (parent, args, context) => {
+      return User.find();
+    },
   },
 
   Mutation: {
@@ -60,6 +64,8 @@ const resolvers = {
 
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${validatedCityName}&key=${process.env.API_KEY}`;
       const response1 = await axios(url);
+
+      console.log(response1);
       
       const cityResults = {
         cityId: response1.data.results[0].place_id,

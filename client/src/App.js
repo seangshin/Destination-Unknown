@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import Feed from "./pages/Feed";
 // import Homehero from "./components/Herosection"
 // import Searchcards from "./components/Searchcards";
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/feed" element={<Feed />} />
         </Routes>
         </div>
         
