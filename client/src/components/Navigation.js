@@ -28,8 +28,8 @@ export default function Navigation() {
               </>
             ) : (
               <>
-                <Nav.Link href='login' className="d-inline-block center">Login</Nav.Link>
-                <Nav.Link href='signup'>Sign Up!</Nav.Link>
+                <Nav.Link href='/login' className="d-inline-block center">Login</Nav.Link>
+                <Nav.Link href='/signup'>Sign Up!</Nav.Link>
               </>
             )}
           </Nav>

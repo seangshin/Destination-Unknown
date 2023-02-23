@@ -20,6 +20,7 @@ const SearchPlaces = () => {
     if (!searchInput) {
       return false;
     }
+    console.log('search registerd')
 
     try {
       const response = await getCity({
@@ -85,7 +86,7 @@ const SearchPlaces = () => {
                 <Button type='submit' variant='success' 
                 size='lg'
                 className="searchbtn-home">
-                <i class="fa-solid fa-thumbtack"></i> Search
+                <i className="fa-solid fa-thumbtack"></i> Search
                 </Button>
               </Col>
             </Form.Row>
@@ -106,16 +107,16 @@ const SearchPlaces = () => {
                   <Card.Body>
                     <Card.Title className="cardtitle">{restaurant.restaurantName}</Card.Title>
                     <Card.Subtitle className="cardprice">
-                    <i class="fa-solid fa-wallet"></i> {`Restaurant Price: ${restaurant.priceLevel}`}
+                    <i className="fa-solid fa-wallet"></i> {`Restaurant Price: ${restaurant.priceLevel}`}
                     </Card.Subtitle>
-                    <Card.Subtitle className="cardrating"><i class="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}
+                    <Card.Subtitle className="cardrating"><i className="fa-solid fa-certificate"></i> {`Rating: ${restaurant.rating}`}
                     </Card.Subtitle>
                     {Auth.loggedIn() && (
                     <Button 
                       className='btn-info center save-btn-css'
                       variant="secondary" size="sm"
                       onClick={() => handleSaveSearch(restaurant.restaurantId)}>
-                       Save <i class="fa-solid fa-heart"></i>
+                       Save <i className="fa-solid fa-heart"></i>
                     </Button>
                   )}
                   </Card.Body>
