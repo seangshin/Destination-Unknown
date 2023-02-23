@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_ME } from '../utils/queries';
 import { REMOVE_SEARCH } from '../utils/mutations';
+import "../styles/profile.css";
 
 const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -47,11 +48,11 @@ const Profile = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Viewing saved searches!</h1>
+          <h1>Saved Searches 🍽️</h1>
         </Container>
       </Jumbotron>
-      <Container>
-        <h2>
+      <Container className='container-profile'>
+        <h2 className='profileH2'>
           {userData.savedLocations.length
             ? `Viewing ${userData.savedLocations.length} saved ${userData.savedLocations.length === 1 ? 'searches' : 'searches'}:`
             : 'You have no saved searches!'}
@@ -65,9 +66,15 @@ const Profile = () => {
                   <Card.Title>{restaurant.restaurantName}</Card.Title>
                   <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
                   {/* <Card.Text>{restaurant.description}</Card.Text> */}
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteSearch(restaurant.restaurantId)}>
-                    Delete
-                  </Button>
+                  <div className="d-flex">
+                    <Button
+                      className="btn-warning center delete-btn-css mt-3"
+                      variant="secondary"
+                      size="sm"
+                      onClick={() =>handleDeleteSearch(restaurant.restaurantId)}>
+                      Delete <i className="fa-solid fa-x"></i>
+                    </Button>
+                  </div>
                 </Card.Body>
               </Card>
             );

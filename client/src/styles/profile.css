@@ -1,0 +1,84 @@
+.body {
+  justify-content: center;
+  display: flex;
+}
+
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  border: 1p solid white;
+  padding-top: 10px;
+  justify-content: center;
+  background-color: #ffc0cb8a;
+  font: orange;
+}
+
+.profileH2 {
+  display: flex;
+  color: black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-left: 16px;
+  margin-top: 12px;
+}
+
+.delete-btn-css {
+  color: white !important;
+  margin: 0 auto;
+}
+
+.text-light {
+  background: url("../assets/flamingo.jpg") center center/cover no-repeat;
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  object-fit: contain;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.btn-danger {
+  background-color: orange !important;
+  border-color: orange !important;
+}
+
+.togglebtn {
+  background-color: pink !important;
+  outline: pink !important;
+  border: transparent !important;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.card-columns {
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  border: 10px;
+  border-color: orange;
+}
+
+.cardtitle {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.cardprice .cardrating {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.cardprice {
+  margin-bottom: 10px !important;
+}

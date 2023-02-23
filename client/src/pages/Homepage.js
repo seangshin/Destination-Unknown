@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import "../styles/mainpage.css";
-
 import { useMutation } from '@apollo/client';
-
 import Auth from '../utils/auth';
 import { GET_CITY, SAVE_SEARCH } from '../utils/mutations';
 
@@ -23,7 +21,7 @@ const SearchPlaces = () => {
 
     try {
       const response = await getCity({
-        variables: { cityName: searchInput},
+        variables: { cityName: searchInput },
       });
 
       const results = response.data.getCity.restaurants;
@@ -95,7 +93,7 @@ const SearchPlaces = () => {
       </Jumbotron>
 
       
-      <Container>
+      <Container className='container-profile'>
         {restaurants.length ? (
         <CardColumns>
           {restaurants.map((restaurant) => {
