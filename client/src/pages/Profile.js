@@ -57,7 +57,7 @@ const Profile = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing saved searches!</h1>
+          <h1>Saved Searches 🍽️</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -71,7 +71,7 @@ const Profile = () => {
         <CardColumns>
           {userData.savedLocations.map((restaurant) => {
             return (
-              <Card key={restaurant.restaurantId} border="dark">
+              <Card key={restaurant.restaurantId} border="warning">
                 <Card.Img
                   src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${restaurant.photo}&key=AIzaSyDEHGBibTeuDpUclYDLNXIAZ0J7NKWewJw`}
                   alt={`The image for ${restaurant.restaurantName}`}
@@ -81,12 +81,18 @@ const Profile = () => {
                   <Card.Title>{restaurant.restaurantName}</Card.Title>
                   <Card.Subtitle>{`Restaurant Price: ${restaurant.priceLevel} and Rating: ${restaurant.rating}`}</Card.Subtitle>
                   {/* <Card.Text>{restaurant.description}</Card.Text> */}
-                  <Button
-                    className="btn-block btn-danger"
-                    onClick={() => handleDeleteSearch(restaurant.restaurantId)}
-                  >
-                    Delete
-                  </Button>
+                  <div className="d-flex">
+                    <Button
+                      className="btn-warning center delete-btn-css mt-3"
+                      variant="secondary"
+                      size="sm"
+                      onClick={() =>
+                        handleDeleteSearch(restaurant.restaurantId)
+                      }
+                    >
+                      Delete <i className="fa-solid fa-x"></i>
+                    </Button>
+                  </div>
                 </Card.Body>
               </Card>
             );
