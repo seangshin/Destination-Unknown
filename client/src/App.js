@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Navigation from "./components/Navigation";
 import Homepage from "./pages/Homepage";
 import Profile from "./pages/Profile";
+import Home from "./pages/Home";
 // import Homehero from "./components/Herosection"
 // import Searchcards from "./components/Searchcards";
 
@@ -39,14 +40,18 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <>
+      <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Navigation />
         <Routes>
-          <Route path='/' element={<Homepage />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/homepage' element={<Homepage />} />
           <Route path="signup" element={<Signup />} />
           {/* <Route path='search' element={<Search />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="profile" element={<Profile />} />
         </Routes>
+        </div>
+        
       </>
       </Router>
     </ApolloProvider>

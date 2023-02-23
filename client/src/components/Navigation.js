@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Button, Container, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import Auth from '../utils/auth';
+import "../styles/navbar.css";
 
 
 export default function Navigation() {
   return (
     <>
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar className="nav-container" bg="dark" variant="dark" expand="lg">
         <Navbar.Brand  href='/'>
           <img
             alt=""
