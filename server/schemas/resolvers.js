@@ -61,7 +61,6 @@ const resolvers = {
         validatedCityName = cityName.replace(" ", "+");
       } else validatedCityName = cityName;
 
-      console.log({ validatedCityName, env: process.env.API_KEY });
       const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${validatedCityName}&key=${process.env.API_KEY}`;
       const response1 = await axios(url);
 

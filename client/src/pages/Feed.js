@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../utils/queries';
 import "../styles/feed.css";
 
-
 const Feed = () => {
   const { loading, data } = useQuery(GET_USERS);
 

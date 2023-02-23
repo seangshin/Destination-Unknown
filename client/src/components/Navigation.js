@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import Auth from '../utils/auth';
-import "../styles/navbar.css";
-
 
 export default function Navigation() {
   return (

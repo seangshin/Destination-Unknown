@@ -10,7 +10,7 @@
 
 .hero-container{
     background: url('../assets/hero-image.jpg') center center/cover no-repeat;
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
